@@ -5,8 +5,8 @@
 <div class="text-center">
     <div class="text-center" style="float:left">
     
-    <textarea id="TextArea1" rows="2" cols="20"></textarea>
-    <input id="Button1" type="button" value="button" onclick="call_api();"/>
+   <!-- <textarea id="TextArea1" rows="2" cols="20"></textarea>
+    <input id="Button1" type="button" value="button" onclick="call_api();"/>-->
     <div class="w3-content" style="padding:30px;border:3px solid #f1f1f1" id="chat">
         <div class="chatcontainer">
             <img src="~/Img/Chat1.png" alt="Avatar" class="left">
@@ -46,3 +46,21 @@
     
 </div>
 </div>
+<div id="chart2" style="float:right;right:100px">
+    <div data-v-365c20ab="" class="chart-view" style="height: 400px; width: 350px;">
+        <canvas id="chartjs-5" class="chartjs" width="400" height="400" style="height: 385px; width: 470px;"></canvas>
+    </div>
+    <div data-v-365c20ab="" class="chart-view" style="height: 400px; width: 350px;">
+        <canvas id="chartjs-6" class="chartjs" width="962" height="481" style="display: block; height: 385px; width: 770px;"></canvas>
+    </div>
+</div>
+
+@section Scripts
+{   <script>
+        call_api();
+        //graph1();
+        graph2();
+    </script >
+        
+
+}
