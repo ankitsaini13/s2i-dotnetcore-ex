@@ -217,7 +217,7 @@ function readfile() {
         snumber.value = sline + 1
         //sline = sline+1
         //if (sline == 5) {
-        if (sline == 10) {
+            if (sline == results.length || sline == 20) {
             output.textContent=""
         }
     }
