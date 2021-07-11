@@ -25,6 +25,7 @@
 img.left, img.right {
     height:60px;
     width:60px;
+    border-radius: 50%;
 }
     /* Style the right image */
     .chatcontainer img.right {
