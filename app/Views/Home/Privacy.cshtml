@@ -3,4 +3,59 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="text-center" style="float:left">
+    <div class="w3-content" style="padding:30px;border:3px solid #f1f1f1;overflow: auto;height:550px;width:500px" id="chat">
+    </div>
+    <div style="padding-top: 15px;padding-bottom: 15px;">
+        <textarea style="width:500px;height: 60px;border: 3px solid #f1f1f1;" id="schat" onkeypress="runScript()"></textarea>
+        
+    </div>
+
+</div>
+<div id="chart2" style="float:right;right:100px">
+    <div data-v-365c20ab="" class="chart-view" style="height: auto; width: 500px;">
+        <center><img src='/Img/Chat1.png' alt='Avatar' class='left'><font size="6">Customer</font></center>
+        <canvas id="chartjs-5" class="chartjs" width="962" height="481" style="display: block; height: 385px; width: 770px;"></canvas>
+    </div>
+    <br />
+    <div data-v-365c20ab="" class="chart-view" style="height: auto; width: 500px;">
+        <center><img src="~/Img/Chat2.png" alt='Avatar' class='left'><font size="6">Agent</font></center>
+        <canvas id="chartjs-6" class="chartjs" width="962" height="481" style="display: block; height: 385px; width: 770px;"></canvas>
+    </div>
+</div>
+<br />
+
+<textarea style="width:500px;height: 400px;display:none;" id="output"></textarea>
+<input id="Text1" type="text" value="0" style="display:none;" />
+
+<br />
+
+@section Scripts
+{
+    <!--<script src="~/js/JavaScript1.js"></script>-->
+    <script>
+        var scustomer = new Object();
+
+        var polarchart1, polarchart2;
+        scustomer.label = [];
+        scustomer.Impolite = [];
+        scustomer.Frustrated = [];
+        scustomer.Sad = [];
+        scustomer.Sympathetic = [];
+        scustomer.Polite = [];
+        scustomer.Satisfied = [];
+        scustomer.Excited = [];
+        var sagent = new Object();
+        sagent.label = [];
+        sagent.Impolite = [];
+        sagent.Frustrated = [];
+        sagent.Sad = [];
+        sagent.Sympathetic = [];
+        sagent.Polite = [];
+        sagent.Satisfied = [];
+        sagent.Excited = [];
+        graph1();
+        graph2();
+        //enters();
+    </script>
+}
