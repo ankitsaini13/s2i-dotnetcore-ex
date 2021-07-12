@@ -14,12 +14,22 @@ function call_api(stext,sgraph,stime) {
     //stext = document.getElementById("TextArea1");
    // stext = "I am excited.Team, I know that times are tough!"
     //Http.timeout = 60000;
-    Http.send(JSON.stringify({ "utterances": [{ "text": stext, "user": "customer" }] }));
+    if (sgraph == "One") {
+        Http.send(JSON.stringify({ "utterances": [{ "text": stext, "user": "customer" }] }));
+    }
+    else if (sgraph == "Two" || sgraph == "Three") {
+        Http.send(JSON.stringify({ "utterances": [{ "text": stext, "user": "agent" }] }));
+    }
+
+    
     if (sgraph == "One") {
         update_graph1(Http.responseText, stime);
     }
     else if (sgraph == "Two") {
         update_graph2(Http.responseText, stime);
+    }
+    else if (sgraph == "Three") {
+        sresponse(Http.responseText, stext);
     }
    // Http.onreadystatechange = (e) => {
         //if (Http.responseText!="") {
@@ -76,16 +86,14 @@ function update_graph1(stext, stime) {
 
     polarchart1.config.data.labels = scustomer.label
     polarchart1.config.data.datasets[0].data = scustomer.Impolite
-    polarchart1.config.data.datasets[1].data = scustomer.Sad
-    polarchart1.config.data.datasets[2].data = scustomer.Frustrated
+    polarchart1.config.data.datasets[1].data = scustomer.Frustrated
+        polarchart1.config.data.datasets[2].data = scustomer.Sad
     polarchart1.config.data.datasets[3].data = scustomer.Sympathetic
     polarchart1.config.data.datasets[4].data = scustomer.Polite
     polarchart1.config.data.datasets[5].data = scustomer.Satisfied
     polarchart1.config.data.datasets[6].data = scustomer.Excited
 
     polarchart1.update();
-    
-
 
 }
 
@@ -132,8 +140,8 @@ function update_graph2(stext, stime) {
 
     polarchart2.config.data.labels = sagent.label
     polarchart2.config.data.datasets[0].data = sagent.Impolite
-    polarchart2.config.data.datasets[1].data = sagent.Sad
-    polarchart2.config.data.datasets[2].data = sagent.Frustrated
+    polarchart2.config.data.datasets[1].data = sagent.Frustrated
+    polarchart2.config.data.datasets[2].data = sagent.Sad
     polarchart2.config.data.datasets[3].data = sagent.Sympathetic
     polarchart2.config.data.datasets[4].data = sagent.Polite
     polarchart2.config.data.datasets[5].data = sagent.Satisfied
@@ -217,7 +225,7 @@ function readfile() {
         snumber.value = sline + 1
         //sline = sline+1
         //if (sline == 5) {
-            if (sline == results.length || sline == 20) {
+        if (sline == results.length || sline == 20) {
             output.textContent=""
         }
     }
@@ -360,7 +368,7 @@ function addchat(stext, sperson, stime) {
 
     }
     else if (sperson == "Two") {
-        var daString = "<div class=\'chatcontainer darker\'><img src=\'/Img/chat2.png\' alt=\'Avatar\' class=\'right\'><p>" + stext + "</p><span class=\'time-right\'>" + stime + "</span></div>";
+        var daString = "<div class=\'chatcontainer darker\'><img src=\'/Img/Chat2.png\' alt=\'Avatar\' class=\'right\'><p>" + stext + "</p><span class=\'time-right\'>" + stime + "</span></div>";
     }
     
     var daParent = document.getElementById("chat");
@@ -372,4 +380,68 @@ function addchat(stext, sperson, stime) {
 function gotoBottom(id) {
     var element = document.getElementById(id);
     element.scrollTop = element.scrollHeight - element.clientHeight;
+}
+function runScript() {
+    //See notes about 'which' and 'key'
+    if (event.which === 13 || event.keyCode === 13 || event.key === "Enter") {
+        var tb = document.getElementById("schat");
+        //call_api1(tb.value);
+        var stime = new Date().toLocaleTimeString();
+        call_api(tb.value, "Three", stime);
+    }
+}
+function sresponse(stext, svalue) {
+
+    const obj = JSON.parse(stext);
+    sad_score = 0;
+    frustrated_score = 0;
+    satisfied_score = 0;
+    excited_score = 0;
+    polite_score = 0;
+    impolite_score = 0;
+    sympathetic_score = 0;
+    var stime = new Date().toLocaleTimeString();
+    for (var i = 0; i < obj.utterances_tone[0].tones.length; i++) {
+        var tone_name = obj.utterances_tone[0].tones[i].tone_id;
+        var tone_score = obj.utterances_tone[0].tones[i].score;
+        switch (tone_name) {
+            case 'sad': sad_score = "-" + tone_score
+                break;
+            case "frustrated": frustrated_score = "-" + tone_score
+                break;
+            case "satisfied": satisfied_score = tone_score
+                break;
+            case "excited": excited_score = tone_score
+                break;
+            case "polite": polite_score = tone_score
+                break;
+            case "impolite": impolite_score = "-" + tone_score
+                break;
+            case "sympathetic": sympathetic_score = tone_score
+                break;
+        }
+        tone_name = "";
+        tone_score = "";
+    }
+    if (sad_score != 0 || frustrated_score != 0 || impolite_score != 0) {
+        var userPreference;
+
+        if (confirm("Your tone is not good, Do you want to change?") == true) {
+            userPreference = "Data saved successfully!";
+        } else {
+            userPreference = "Save Canceled!";
+
+            addchat(svalue, "Two", stime);
+            var tb = document.getElementById("schat");
+            tb.value = ""
+            call_api(svalue, "Two", stime)
+        }
+
+    }
+    else {
+        addchat(svalue, "Two", stime);
+        var tb = document.getElementById("schat");
+        tb.value = ""
+        call_api(svalue, "Two", stime)
+    }
 }

@@ -1,15 +1,16 @@
 @{
-    ViewData["Title"] = "Tone Analyzer";
+    ViewData["Title"] = "Live Chat";
 }
 
 <div class="text-center" style="float:left">
-
-    <input type="file" id="myFile">
-    <hr>
-    <div class="w3-content" style="padding:30px;border:3px solid #f1f1f1;overflow: auto;height:580px;width:500px" id="chat">
+    <div class="w3-content" style="padding:30px;border:3px solid #f1f1f1;overflow: auto;height:550px;width:500px" id="chat">
+    </div>
+    <div style="padding-top: 15px;padding-bottom: 15px;">
+        <textarea style="width:500px;height: 60px;border: 3px solid #f1f1f1;" id="schat" onkeypress="runScript()"></textarea>
+        
     </div>
 
-    </div>
+</div>
 <div id="chart2" style="float:right;right:100px">
     <div data-v-365c20ab="" class="chart-view" style="height: auto; width: 500px;">
         <center><img src='/Img/Chat1.png' alt='Avatar' class='left'><font size="6">Customer</font></center>
@@ -17,29 +18,23 @@
     </div>
     <br />
     <div data-v-365c20ab="" class="chart-view" style="height: auto; width: 500px;">
-        <center><img src="/Img/chat2.png" alt='Avatar' class='left'><font size="6">Agent</font></center>
+        <center><img src="~/Img/Chat2.png" alt='Avatar' class='left'><font size="6">Agent</font></center>
         <canvas id="chartjs-6" class="chartjs" width="962" height="481" style="display: block; height: 385px; width: 770px;"></canvas>
     </div>
 </div>
+<br />
 
 <textarea style="width:500px;height: 400px;display:none;" id="output"></textarea>
-<input id="Text1" type="text" value="0" style="display:none;"/>
+<input id="Text1" type="text" value="0" style="display:none;" />
+
+<br />
 
 @section Scripts
-{   <script>
-        var sad_color = "rgb(255, 102, 0, 0.3)";
-        var frustrated_color = "rgb(255, 0, 0, 0.3)";
-        var satisfied_color = "rgb(0, 204, 0, 0.3)";
-        var excited_color = "rgb(0, 128, 0, 0.3)";
-        var polite_color = "rgb(153, 255, 153, 0.3)";
-        var impolite_color = "rgb(255, 204, 0, 0.3)";
-        var sympathetic_color = "rgb(255, 255, 153, 0.3)";
-
-        scolor = [sad_color, frustrated_color, satisfied_color, excited_color, polite_color, impolite_color, sympathetic_color];
-
-
+{
+    <!--<script src="~/js/JavaScript1.js"></script>-->
+    <script>
         var scustomer = new Object();
-        
+
         var polarchart1, polarchart2;
         scustomer.label = [];
         scustomer.Impolite = [];
@@ -58,20 +53,8 @@
         sagent.Polite = [];
         sagent.Satisfied = [];
         sagent.Excited = [];
-
-
-        // loadchat();
-        //call_api();
-        //graph1();
-        //readTextFile('~/chat/SampleChat1.txt');
-        //readTextFile("file:///C:/your/path/to/file.txt");
-        
         graph1();
         graph2();
-        loadfile();
-
-        setInterval(readfile, 5000)
-    </script >
-        
-
+        //enters();
+    </script>
 }
