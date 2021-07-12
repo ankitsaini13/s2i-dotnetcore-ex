@@ -27,7 +27,10 @@ namespace app.Controllers
         {
             return View();
         }
-
+        public IActionResult Livechat()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
