@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Tone Analyzer";
+}
+
+<label for="InputText" class="label green">Input Text for Analysis: -</label>
+    <br><br>
+    <textarea id="InputText" name="InputText" rows="8" cols="70" spellcheck="true" > </textarea>
+
+    <h2 class="label2"> OR </h2>
+    
+    <label for="textfile" class="label green">Upload text from a file:</label>
+    <br><br>
+    <input type="file" id="textfile" name="textfile">
+
+    <br><br><br><br>
+
+    <input type="button" class="button" value="Submit">
+    </form>
+
+    <p class="label grey">Click the "Submit" button and the form-data will be sent to a page on the 
+    server called "action_page.php". </p>
