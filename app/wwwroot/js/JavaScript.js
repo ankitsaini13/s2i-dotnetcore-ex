@@ -368,7 +368,7 @@ function addchat(stext, sperson, stime) {
 
     }
     else if (sperson == "Two") {
-        var daString = "<div class=\'chatcontainer darker\'><img src=\'/Img/Chat2.png\' alt=\'Avatar\' class=\'right\'><p>" + stext + "</p><span class=\'time-right\'>" + stime + "</span></div>";
+        var daString = "<div class=\'chatcontainer darker\'><img src=\'/Img/chat2.png\' alt=\'Avatar\' class=\'right\'><p>" + stext + "</p><span class=\'time-right\'>" + stime + "</span></div>";
     }
     
     var daParent = document.getElementById("chat");
