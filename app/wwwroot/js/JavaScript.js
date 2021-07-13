@@ -85,9 +85,10 @@ function update_graph1(stext, stime) {
     scustomer.label.push(stime)
 
     polarchart1.config.data.labels = scustomer.label
-    polarchart1.config.data.datasets[0].data = scustomer.Impolite
-    polarchart1.config.data.datasets[1].data = scustomer.Frustrated
-        polarchart1.config.data.datasets[2].data = scustomer.Sad
+    
+    polarchart1.config.data.datasets[0].data = scustomer.Frustrated
+    polarchart1.config.data.datasets[1].data = scustomer.Sad
+    polarchart1.config.data.datasets[2].data = scustomer.Impolite
     polarchart1.config.data.datasets[3].data = scustomer.Sympathetic
     polarchart1.config.data.datasets[4].data = scustomer.Polite
     polarchart1.config.data.datasets[5].data = scustomer.Satisfied
@@ -139,9 +140,10 @@ function update_graph2(stext, stime) {
     sagent.label.push(stime)
 
     polarchart2.config.data.labels = sagent.label
-    polarchart2.config.data.datasets[0].data = sagent.Impolite
-    polarchart2.config.data.datasets[1].data = sagent.Frustrated
-    polarchart2.config.data.datasets[2].data = sagent.Sad
+    
+    polarchart2.config.data.datasets[0].data = sagent.Frustrated
+    polarchart2.config.data.datasets[1].data = sagent.Sad
+    polarchart2.config.data.datasets[2].data = sagent.Impolite
     polarchart2.config.data.datasets[3].data = sagent.Sympathetic
     polarchart2.config.data.datasets[4].data = sagent.Polite
     polarchart2.config.data.datasets[5].data = sagent.Satisfied
@@ -247,14 +249,7 @@ function graph1() {
         "data": {
             "labels": [],
             "datasets": [
-                {
-                    label: "Impolite",
-                    backgroundColor: "rgb(255, 204, 0, 0.3)",
-                    borderColor: "rgb(255, 204, 0)",
-                    borderWidth: 1.5,
-                    stack: "Stack 0",
-                    data: []
-                },{
+               {
                 label: "Frustrated",
                 backgroundColor: "rgb(255, 0, 0, 0.3)",
                     borderColor: "rgb(255, 0, 0)",
@@ -268,7 +263,15 @@ function graph1() {
           borderWidth: 1.5,
           stack: "Stack 0",
           data: []
-           }, {
+           }, 
+           {
+            label: "Impolite",
+            backgroundColor: "rgb(255, 204, 0, 0.3)",
+            borderColor: "rgb(255, 204, 0)",
+            borderWidth: 1.5,
+            stack: "Stack 0",
+            data: []
+        },{
                     label: "Sympathetic",
                     backgroundColor: "rgb(255, 255, 153, 0.3)",
                     borderColor: "rgb(255, 255, 153)",
@@ -308,13 +311,6 @@ function graph2() {
             "labels": [],
             "datasets": [
                 {
-                    label: "Impolite",
-                    backgroundColor: "rgb(255, 204, 0, 0.3)",
-                    borderColor: "rgb(255, 204, 0)",
-                    borderWidth: 1.5,
-                    stack: "Stack 0",
-                    data: []
-                }, {
                     label: "Frustrated",
                     backgroundColor: "rgb(255, 0, 0, 0.3)",
                     borderColor: "rgb(255, 0, 0)",
@@ -325,6 +321,13 @@ function graph2() {
                     label: "Sad",
                     backgroundColor: "rgb(255, 102, 0, 0.3)",
                     borderColor: "rgb(255, 102, 0)",
+                    borderWidth: 1.5,
+                    stack: "Stack 0",
+                    data: []
+                }, {
+                    label: "Impolite",
+                    backgroundColor: "rgb(255, 204, 0, 0.3)",
+                    borderColor: "rgb(255, 204, 0)",
                     borderWidth: 1.5,
                     stack: "Stack 0",
                     data: []
