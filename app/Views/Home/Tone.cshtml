@@ -2,19 +2,49 @@
     ViewData["Title"] = "Tone Analyzer";
 }
 
-    <label for="InputText" class="label green">Input Text for Analysis: -</label>
-    <br><br>
-    <textarea id="InputText" name="InputText" rows="8" cols="70" spellcheck="true" > </textarea>
+   <div class="text-center" style="float:left">
 
-    <h2 class="label2"> OR </h2>
-    
-    <label for="textfile" class="label green">Upload text from a file:</label>
-    <br><br>
-    <input type="file" id="textfile" name="textfile">
-
-    <br><br><br><br>
-
-    <input type="button" class="button" value="Submit">
-
-    <p class="label grey">Click the "Submit" button and the form-data will be sent to a page on the 
-    server called "action_page.php". </p>
+    <div class="container">
+        <form action="/action_page.php">
+            <div class="row">
+                <div class="col-25">
+                    <label for="inputFileLabel">Input File</label>
+                </div>
+                <div class="col-75">
+                    <input type="file" accept=".txt" id="textfile" name="textfile">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="textType">Text Type</label>
+                </div>
+                <div class="col-75">
+                    <select id="textType" name="textType">
+                        <option value="twitter">Tweet</option>
+                        <option value="facebook">Facebook Post</option>
+                        <option value="email">E-Mail</option>
+                        <option value="blod">Blog Post</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="textField">Enter Text</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="textField" name="textField" placeholder="Write something or Upload a text file for Analysis.." style="height:200px"></textarea>
+                </div>
+            </div>
+            <script src="loadingFile.js"></script>
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    </div>
+<div id="chart2" style="float:right;right:100px">
+    <div data-v-365c20ab="" class="chart-view" style="height: auto; width: 500px;">
+        
+        <canvas id="chartjs-5" class="chartjs" width="962" height="481" style="display: block; height: 385px; width: 770px;"></canvas>
+    </div>
+    </div>
